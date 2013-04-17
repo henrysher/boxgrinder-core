@@ -27,6 +27,8 @@ mapping:
         required: yes
       "password":
         type: str
+      "ec2_user":
+        type: str
   "hardware":
     class: AStruct
     type: map

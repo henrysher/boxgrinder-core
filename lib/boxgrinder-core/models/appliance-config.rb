@@ -34,6 +34,7 @@ module BoxGrinder
       @os.version = nil
       @os.password = nil
       @os.pae = true
+      @os.ec2_user = nil
 
       @hardware = AStruct.new
 
@@ -85,6 +86,7 @@ module BoxGrinder
           @os.name = v['name'] if v['name']
           @os.version = v['version'] if v['version']
           @os.password = v['password'] if v['password']
+          @os.ec2_user = v['ec2_user'] if v['ec2_user']
           # TODO this is OS specific, move it to OS plugin!
           @os.pae = false if v['pae'] == false
         else
@@ -155,7 +157,7 @@ module BoxGrinder
 
     # used to checking if configuration differs from previous in appliance-kickstart
     def hash
-      "#{@name}-#{@summary}-#{@version}-#{@release}-#{@os.name}-#{@os.version}-#{@os.password}-#{@hardware.cpus}-#{@hardware.memory}-#{@hardware.partitions}-#{@appliances}".hash
+      "#{@name}-#{@summary}-#{@version}-#{@release}-#{@os.name}-#{@os.version}-#{@os.password}-#{@os.ec2_user}-#{@hardware.cpus}-#{@hardware.memory}-#{@hardware.partitions}-#{@appliances}".hash
     end
 
     def eql?(other)
